@@ -1,0 +1,24 @@
+<!--<app-common-layout></app-common-layout>-->
+<div style="text-align:center;">
+  <h1>View Users</h1>
+  <div class="table-responsive">
+    <table class="table" style="border:5px solid rgba(220,230,242,1);" *ngIf="users">
+      <tr style="background-color:rgba(220,230,242,1); font-size:12pt">
+        <th style="text-align:center">User Id</th>
+        <th style="text-align:center">Name</th>
+        <th style="text-align:center">Email Id</th>
+        <th style="text-align:center">ContactNo</th>
+      </tr>
+      <tr *ngFor="let user of users" style="background-color:white">
+        <td>{{user.userId }}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.emailId}}</td>
+        <td>{{user.contactNo}}</td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="showMsgDiv" style="">
+    <h4 class="jumbotron" style="text-align:center;">No users available</h4>
+  </div>
+</div>
+

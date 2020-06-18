@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading text-center"><h2>Login</h2></div>
+    <div class="panel-body">
+      <form class="form-horizontal" #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)">
+        <div class="form-group">
+          <div class="col-sm-3"></div>
+          <label class="control-label col-sm-2">Email Id</label>
+          <div class="col-sm-3">
+            <input type="email" name="email" #emailRef="ngModel" class="form-control" ngModel required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+            <div *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)" style="text-align:left; padding-top:5px; color:red;">
+              <div [hidden]="!emailRef.errors.required">
+                <p>&nbsp;Email id is mandatory</p>
+              </div>
+              <div [hidden]="!emailRef.errors.pattern">
+                <p>&nbsp;Email id is not entered in proper format</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-3"></div>
+          <label class="control-label col-sm-2">Password</label>
+          <div class="col-sm-3">
+            <input type="password" name="password" #passwordRef="ngModel" class="form-control" ngModel required minlength="8" maxlength="16">
+            <div *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)" style="text-align:left; padding-top:5px; color:red;">
+              <div [hidden]="!passwordRef.errors.required">
+                <p>&nbsp;Password is mandatory</p>
+              </div>
+              <div [hidden]="!passwordRef.errors.minlength">
+                <p>&nbsp;Password is less than minimum length required!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="col-sm-5"></div>
+          <button type="submit" [disabled]="!loginForm.form.valid" class="col-sm-3 btn btn-primary btn-lg">Login</button>
+        </div>
+        <div *ngIf="showDiv" style="color:red;text-align:center;">
+          <br />
+          {{msg}}
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>

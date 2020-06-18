@@ -1,0 +1,207 @@
+
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center"><h2>Schedule Shipment</h2></div>
+      <div class="panel-body">
+        <form class="form-horizontal" #ScheduleShipmentForm="ngForm" (ngSubmit)="submitScheduleShipmentForm(ScheduleShipmentForm)">
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">PickUp Location Pincode</label>
+            <div class="col-sm-3">
+              <input type="text" name="fromPincode" #fromPincode="ngModel" class="form-control" ngModel required pattern="^[1-9][0-9]{5}$">
+              <div *ngIf="fromPincode.errors && (fromPincode.dirty || fromPincode.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!fromPincode.errors.required">
+                  <p>&nbsp;Pickup Location Pincode is mandatory</p>
+                </div>
+                <div [hidden]="!fromPincode.errors.pattern">
+                  <p>&nbsp;Pincode is not entered in required format!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Delivery location Pincode</label>
+            <div class="col-sm-3">
+              <input type="text" name="toPincode" #toPincode="ngModel" class="form-control" ngModel required pattern="^[1-9][0-9]{5}$">
+              <div *ngIf="toPincode.errors && (toPincode.dirty || toPincode.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!toPincode.errors.pattern">
+                  <p>&nbsp;Pincode is not entered in required format!</p>
+                </div>
+                <!--<div [hidden]="!passwordRef.errors.required">
+                  <p>&nbsp;Delivery Location Pincode is mandatory</p>
+                </div>-->
+              </div>
+            </div>
+            <div class="btn-group col-sm-4">
+              <button type="submit"  class="btn btn-primary">Check Availability</button>
+              <button type="submit" class="btn btn-primary">Cancel</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Shipment Type:</label>
+            <div class="col-sm-3">
+              <select class="form-control" name="shipmentType" id="sel1" ngModel>
+                <option class="dropdown-header">Select</option>
+                <option value="heavy">Heavy</option>
+                <option value="perishiable">Perishiable</option>
+                <option value="fragile">Fragile</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Dimensions</label>
+            <div class="col-sm-1">
+              <input type="number" name="length" #length="ngModel" class="form-control" ngModel required placeholder="Length" min="1">
+            </div>
+            <div class="col-sm-1">
+              <input type="number" name="breadth" #breadth="ngModel" class="form-control" ngModel required placeholder="Breadth" min="1">
+            </div>
+            <div class="col-sm-1">
+              <input type="number" name="height" #height="ngModel" class="form-control" ngModel required placeholder="Height" min="1">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Approx. Weight</label>
+            <div class="col-sm-3">
+              <input type="number" name="weight" #weight="ngModel" class="form-control" ngModel required placeholder="In Kgs" min="1">
+              <div *ngIf="weight.errors && (weight.dirty || weight.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!weight.errors.required">
+                  <p>&nbsp;Weight is mandatory</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Delivery Option</label>
+            <div class="col-sm-3">
+              <select class="form-control" name="deliveryType" id="sel1" ngModel >
+                <option class="dropdown-header">Select</option>
+                <option value="overnight">Overnight</option>
+                <option value="express">Express</option>
+                <option value="standard">Standard</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Choose Time Slot</label>
+            <div class="col-sm-3">
+              <select class="form-control"  name="pickUpTime" id="sel1" ngModel>
+                <option class="dropdown-header">Select</option>
+                <option value="Morning">9:00am-11:30am</option>
+                <option value="Afternoon">2:00pm-3:30pm</option>
+                <option value="Evening">5:00pm-7:00pm</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Choose Pickup Address</label>
+            <div class="col-sm-3">
+              <select class="form-control"  name="pickUpAddress" id="sel1" ngModel>
+                <option class="dropdown-header">Select</option>
+                <option value="home">Home</option>
+                <option value="work">Work</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2 ">Receiver's Address</label>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Building no.</label>
+            <div class="col-sm-3">
+              <input type="text" name="buildingNo" #buildingNo="ngModel" class="form-control" ngModel required>
+              <div *ngIf="buildingNo.errors && (buildingNo.dirty || buildingNo.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!buildingNo.errors.required">
+                  <p>&nbsp;Building number is mandatory</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Street no.</label>
+            <div class="col-sm-3">
+              <input type="text" name="street" #street="ngModel" class="form-control" ngModel required>
+              <div *ngIf="street.errors && (street.dirty ||street.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!street.errors.required">
+                  <p>&nbsp;street Number is mandatory</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Locality</label>
+            <div class="col-sm-3">
+              <input type="text" name="locality" #locality="ngModel" class="form-control" ngModel required>
+              <div *ngIf="locality.errors && (locality.dirty || locality.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!locality.errors.required">
+                  <p>&nbsp;Locality is mandatory</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Pincode</label>
+            <div class="col-sm-3">
+              <input type="text" name="pincode" #pincode="ngModel" class="form-control" ngModel required>
+              <div *ngIf="pincode.errors && (pincode.dirty || pincode.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!pincode.errors.required">
+                  <p>&nbsp;Pincode is mandatory</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Contact No.</label>
+            <div class="col-sm-3">
+              <input type="text" name="contact" #contact="ngModel" class="form-control" ngModel required>
+              <div *ngIf="contact.errors && (contact.dirty || contact.touched)" style="text-align:left; padding-top:5px; color:red;">
+                <div [hidden]="!contact.errors.required">
+                  <p>&nbsp;Contact No. is mandatory</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Choose Approx Cost</label>
+            <div class="col-sm-3">
+              <input type="number" name="approxCost" #approxCost="ngModel" class="form-control" ngModel  min="1">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-2">Packaging Required</label>
+            <div class="checkbox col-sm-3">
+              <input type="checkbox" value="yes">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3"></div>
+            <label class="control-label col-sm-5">Insurance will be applied for packages worth INR 1000 and above</label>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="btn-group col-sm-4">
+              <button type="submit" [disabled]="!ScheduleShipmentForm.form.valid" class="btn btn-primary">Schedule PickUp</button>
+              <button type="reset" [disabled]="!ScheduleShipmentForm.form.valid" class="btn btn-primary">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+

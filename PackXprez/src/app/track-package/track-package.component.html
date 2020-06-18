@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading text-center"><h2>Track Shipment</h2></div>
+    <div class="panel-body">
+      <form class="form-horizontal" #trackPackageForm="ngForm" (ngSubmit)="submitForm(trackPackageForm)">
+        <div class="form-group">
+          <div class="col-sm-3"></div>
+          <label class="control-label col-sm-2">AWB Number</label>
+          <div class="col-sm-3">
+            <input type="text" name="awbNumber" #AWBNumberRef="ngModel" class="form-control" ngModel required>
+            <div *ngIf="AWBNumberRef.errors && (AWBNumberRef.dirty || AWBNumberRef.touched)" style="text-align:left; padding-top:5px; color:red;">
+              <div [hidden]="!AWBNumberRef.errors.required">
+                <p>&nbsp;AWB Number is mandatory</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-4"></div>
+          <div class="btn-group col-sm-4">
+            <button type="submit" [disabled]="!trackPackageForm.form.valid" class="btn btn-primary">Track</button>
+            <button type="reset" [disabled]="!trackPackageForm.form.valid" class="btn btn-primary">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
